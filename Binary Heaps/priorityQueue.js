@@ -4,6 +4,13 @@
  * Therefore, most people would use Binary Heaps to implement priority queue because it is O(log(n))
  */
 
+/*
+ * Big O of Binary Heaps
+ * Insertion - O (log N): If there are 16 numbers, the worst case for it to insert the number to the correct place would be 4 times
+ * Removal - O (log N)
+ * Search - O (N): Binary Heaps is not designed for searching
+ */
+
 // We are gonna write a "Min Binary Heap" because lower number means higher priority, ex: 1 is the highest in the priority
 class PriorityQueue {
 	constructor() {
@@ -36,7 +43,7 @@ class PriorityQueue {
 		}
 	}
 
-    // Remove the root node in the values array
+	// Remove the root node in the values array
 	dequeue() {
 		const maxNode = this.values[0];
 		const endNode = this.values.pop();
