@@ -9,6 +9,17 @@ class PriorityQueue {
     constructor() {
         this.values = [];
     }
+
+    insert(val, priority) {
+        let newNode = new Node(val, priority);
+        this.values.push(newNode);
+        // compare against the parent node by looking into the priority, if it is higher priority, then move up
+        this.bubbleUp();
+    }
+
+    bubbleUp() {
+
+    }
 }
 
 class Node {
