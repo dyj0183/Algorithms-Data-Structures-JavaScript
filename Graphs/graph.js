@@ -40,4 +40,26 @@ class Graph {
 			return v !== vertex1;
 		});
 	}
+
+    removeVertex(targetVertex) {
+        // First, remove this vertex from all edges (disconnect it with any related vertex)
+        this.adjacencyList[targetVertex].forEach(vertex => this.removeEdge(targetVertex, vertex));
+        // Second, remove the empty vertex
+        delete this.adjacencyList[targetVertex];
+    }
 }
+
+// Testing 
+let graph = new Graph();
+graph.addVertex("SLC");
+graph.addVertex("Tokyo");
+graph.addVertex("Taipei");
+
+graph.addEdge("SLC", "Tokyo");
+graph.addEdge("SLC", "Taipei");
+graph.addEdge("Tokyo", "Taipei");
+
+// graph.removeEdge("SLC", "Taipei");
+graph.removeVertex("SLC");
+
+console.log(graph);
