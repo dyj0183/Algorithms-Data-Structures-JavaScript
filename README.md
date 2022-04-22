@@ -5,6 +5,8 @@ I use this repository to practice different kinds of algorithms and data structu
 
 # Data Structures
 * Binary Heaps - Max & Min Binary Heaps
+* Hash Tables
+* Graphs
 
 # Development Environment
 * JavaScript
