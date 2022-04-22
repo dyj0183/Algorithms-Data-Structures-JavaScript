@@ -30,4 +30,14 @@ class Graph {
 		this.adjacencyList[vertex1].push(vertex2);
 		this.adjacencyList[vertex2].push(vertex1);
 	}
+
+    // Remove the connection between two vertex
+	removeEdge(vertex1, vertex2) {
+		this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter((v) => {
+			return v !== vertex2;
+		});
+		this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter((v) => {
+			return v !== vertex1;
+		});
+	}
 }
