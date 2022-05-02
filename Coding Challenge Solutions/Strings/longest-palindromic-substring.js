@@ -1,5 +1,7 @@
 // O(n^2) time & O(n) space
 // This solution works, but I still can simply my codes to make them shorter
+// The idea of this solution is that there are two types of palindromic, 1. odd => aba, 2. even => abba
+// Therefore, I loop through all the characters in the string and assume each of them is the center and see if the char on its left and right is the same or not
 function longestPalindromicSubstring(string) {
 	function oddP(string) {
 		let longestOddP = string[0];
@@ -63,6 +65,7 @@ function longestPalindromicSubstring(string) {
 	const longestEvenP = evenP(string);
 	console.log(longestEvenP);
 
+    // Compare the final results from even and odd to see which one has the longest padindromic
 	if (longestOddP.length > longestEvenP.length && longestOddP.length > 1) {
 		return longestOddP;
 	} else if (
