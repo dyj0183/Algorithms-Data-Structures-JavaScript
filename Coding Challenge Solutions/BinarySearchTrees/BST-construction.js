@@ -62,10 +62,55 @@ class BST {
 		return false;
 	}
 
-	remove(value) {
-		// Write your code here.
+	// After removing the node's value, replace with the smallest node value on its right if there is one, otherwise, replace with the one on its left
+	// This is a complicated function because there are many different scenarios
+	remove(value, parentNode = null) {
+		let currentNode = this;
+		while (currentNode !== null) {
+			if (value > currentNode.value) {
+				parentNode = currentNode;
+				currentNode = currentNode.right;
+			} else if (value < currentNode.value) {
+				parentNode = currentNode;
+				currentNode = currentNode.left;
+			} else {
+				// Found the matched node value, next step is to find the node to replace it
+				if (currentNode.left !== null && currentNode.right !== null) {
+					currentNode.value = currentNode.right.getMinValue();
+					// Call this function again to remove the smallest node on the right side
+					currentNode.right.remove(currentNode.value, currentNode);
+				} else if (parentNode === null) {
+					if (currentNode.left !== null) {
+						currentNode.value = currentNode.left.value;
+						currentNode.right = currentNode.left.right;
+						currentNode.left = currentNode.left.left;
+					} else if (currentNode.right !== null) {
+						currentNode.value = currentNode.right.value;
+						currentNode.left = currentNode.right.left;
+						currentNode.right = currentNode.right.right;
+					} else {
+						// single node tree, do nothing
+					}
+				} else if (parentNode.left === currentNode) {
+					parentNode.left =
+						currentNode.left !== null ? currentNode.left : currentNode.right;
+				} else if (parentNode.right === currentNode) {
+					parentNode.right =
+						currentNode.left !== null ? currentNode.left : currentNode.right;
+				}
+				break;
+			}
+		}
 		// Do not edit the return statement of this method.
 		return this;
+	}
+
+	getMinValue() {
+		let currentNode = this;
+		while (currentNode.left !== null) {
+			currentNode = currentNode.left;
+		}
+		return currentNode.value;
 	}
 }
 
