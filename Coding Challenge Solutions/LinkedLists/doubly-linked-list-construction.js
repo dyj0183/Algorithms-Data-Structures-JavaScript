@@ -68,8 +68,27 @@ class DoublyLinkedList {
 		// Write your code here.
 	}
 
+	// Time: O(1), Space: O(1)
 	remove(node) {
-		// Write your code here.
+		// take care of two edge cases where the node we want to remove is either the head or tail
+		if (node === this.head) {
+			this.head = this.head.next;
+		}
+		if (node === this.tail) {
+			this.tail = this.tail.prev;
+		}
+
+		// call the helper function to remove it
+		this.removeNodeBindings(node);
+	}
+
+	// Helper function for the remove
+	removeNodeBindings(node) {
+		if (node.prev !== null) node.prev.next = node.next;
+		if (node.next !== null) node.next.prev = node.prev;
+		// disconnect itself with other nodes
+		node.prev = null;
+		node.next = null;
 	}
 
 	containsNodeWithValue(value) {
