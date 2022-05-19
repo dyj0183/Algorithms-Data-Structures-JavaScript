@@ -30,8 +30,15 @@ class DoublyLinkedList {
 		this.insertBefore(this.head, node);
 	}
 
+	// Time: O(1), Space: O(1)
 	setTail(node) {
-		// Write your code here.
+		// edge case where the linked list is empty
+		if (this.tail === null) {
+			this.setHead(node);
+			return;
+		}
+
+		this.insertAfter(this.tail, node);
 	}
 
 	// Time: O(1), Space: O(1)
@@ -56,8 +63,25 @@ class DoublyLinkedList {
 		node.prev = nodeToInsert;
 	}
 
+	// Time: O(1), Space: O(1)
 	insertAfter(node, nodeToInsert) {
-		// Write your code here.
+		// edge case, prevent it from happening
+		if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+		// remove the node from linked list first
+		this.remove(nodeToInsert);
+
+		// take care of the connections for nodeToInsert
+		nodeToInsert.prev = node;
+		nodeToInsert.next = node.next;
+
+		// means the node is the last node (tail)
+		if (node.next === null) {
+			this.tail = nodeToInsert;
+		} else {
+			node.next.prev = nodeToInsert;
+		}
+
+		node.next = nodeToInsert;
 	}
 
 	insertAtPosition(position, nodeToInsert) {
