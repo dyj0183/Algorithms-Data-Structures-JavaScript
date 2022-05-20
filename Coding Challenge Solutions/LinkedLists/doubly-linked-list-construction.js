@@ -84,12 +84,34 @@ class DoublyLinkedList {
 		node.next = nodeToInsert;
 	}
 
+	// If the position is at p, Time: O(p), Space: O(1)
 	insertAtPosition(position, nodeToInsert) {
-		// Write your code here.
+		if (position === 1) {
+			this.setHead(nodeToInsert);
+			return;
+		}
+
+		let node = this.head;
+		let currentPosition = 1;
+		// find out the node of the position
+		while (node !== null && currentPosition++ !== position) node = node.next;
+
+		if (node !== null) {
+			this.insertBefore(node, nodeToInsert);
+		} else {
+			this.setTail(nodeToInsert);
+		}
 	}
 
+	// Time: O(n), Space: O(1)
+	// Remove all the nodes with the value in the linked list
 	removeNodesWithValue(value) {
-		// Write your code here.
+		let node = this.head;
+		while (node !== null) {
+			const nodeToRemove = node;
+			node = node.next;
+			if (nodeToRemove.value === value) this.remove(nodeToRemove);
+		}
 	}
 
 	// Time: O(1), Space: O(1)
@@ -115,8 +137,13 @@ class DoublyLinkedList {
 		node.next = null;
 	}
 
+	// Time: O(n), Space: O(1)
 	containsNodeWithValue(value) {
-		// Write your code here.
+		let node = this.head;
+		// If find the node with the matched value, then the while loop will stop
+		while (node !== null && node.value !== value) node = node.next;
+		// If there is no match, we might get null (which should return false), so we do another check here
+		return node !== null;
 	}
 }
 
