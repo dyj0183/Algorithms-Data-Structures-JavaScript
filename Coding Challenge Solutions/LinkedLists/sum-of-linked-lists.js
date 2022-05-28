@@ -26,16 +26,17 @@ function sumOfLinkedLists(linkedListOne, linkedListTwo) {
 
 	newTotal = newTotal.toString();
 
-	let newLinkedList = new LinkedList(newTotal[newTotal.length - 1]);
+	let newLinkedList = new LinkedList(Number(newTotal[newTotal.length - 1]));
+	let currentNode = newLinkedList;
 	for (let i = newTotal.length - 2; i > -1; i--) {
-		// newLinkedList.next.value = newTotal[i];
-		newLinkedList.next = newTotal[i];
-		newLinkedList = newLinkedList.next;
+		const newNode = new LinkedList(Number(newTotal[i]));
+		currentNode.next = newNode;
+		currentNode = newNode;
 	}
 
-	// console.log(newLinkedList);
+	console.log(newLinkedList);
 
-	return linkedListOne;
+	return newLinkedList;
 }
 
 // Do not edit the lines below.
